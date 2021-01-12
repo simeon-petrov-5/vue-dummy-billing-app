@@ -1,0 +1,17 @@
+[{
+        "type": "income",
+        "amount": 1000,
+        "date": 1609452000000
+    },
+    {
+        "type": "income",
+        "amount": 50,
+        "date": 1609452000000
+
+    },
+    {
+        "type": "expence",
+        "amount": 100,
+        "date": 1609797600000
+    }
+]

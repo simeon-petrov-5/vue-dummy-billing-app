@@ -1,4 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import './configs/tailwind.css';
+import ArrowUp from './components/registered/ArrowUp.vue'
+import ArrowDown from './components/registered/ArrowDown.vue'
+
+const app = createApp(App)
+app.component('arrow-up', ArrowUp)
+app.component('arrow-down', ArrowDown)
+
+app.mount('#app')

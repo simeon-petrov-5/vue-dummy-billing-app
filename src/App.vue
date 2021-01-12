@@ -1,17 +1,55 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" class="w-8 mx-auto mb-8" src="./assets/logo.png" />
+  <Statistics :entries="entries" :savingsAmount="savingsAmount" />
+  <p v-if="showGoodJob" class="text-center mb-8 text-green-500 font-bold">
+    WOW, good job on saving!
+  </p>
+  <UserInput @on-user-input="onUserInput" />
+  <ListEntries :entries="entries" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MockData from "./mockData/billingData.json";
+import Statistics from "./sections/Statistics.vue";
+import UserInput from "./sections/UserInput.vue";
+import ListEntries from "./sections/ListEntries.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Statistics,
+    UserInput,
+    ListEntries,
+  },
+  data() {
+    return {
+      entries: [...MockData],
+      savingsAmount: 100,
+      showGoodJob: false,
+    };
+  },
+  methods: {
+    onUserInput(newData) {
+      if (newData.type === "income") {
+        const savingPart = newData.amount * 0.2;
+        this.savingsAmount += savingPart;
+        newData.amount = newData.amount - savingPart;
+      }
+      this.entries.push(newData);
+    },
+  },
+  watch: {
+    savingsAmount(updatedAmount, prevAmount) {
+      console.log()
+      if (updatedAmount > prevAmount * 2) {
+        this.showGoodJob = true;
+        setTimeout(() => {
+          this.showGoodJob = false;
+        }, 3000);
+      }
+    },
+  },
+};
 </script>
 
 <style>
@@ -19,8 +57,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 60px 0;
 }
 </style>

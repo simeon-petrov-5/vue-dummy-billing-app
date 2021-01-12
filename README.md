@@ -6,23 +6,31 @@ Hi! A little disclaimer at the start: this little project is created and used as
 ## Project setup
 ```
 yarn install
+OR
+npm install
 ```
  
 
 ### Compiles and hot-reloads for development
 ```
 yarn dev
+OR
+npm run dev
 ```
   
 
 ### Compiles and minifies for production
 ```
 yarn build
+OR
+npm run build
 ```
 
 ### Lints and fixes files
 ```
 yarn lint
+OR
+npm run lint
 ```
 
 ## Used libraries & frameworks

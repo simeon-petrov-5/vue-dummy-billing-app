@@ -40,7 +40,6 @@ export default {
   },
   watch: {
     savingsAmount(updatedAmount, prevAmount) {
-      console.log()
       if (updatedAmount > prevAmount * 2) {
         this.showGoodJob = true;
         setTimeout(() => {

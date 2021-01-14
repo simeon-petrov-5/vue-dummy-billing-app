@@ -40,6 +40,10 @@ import { expence, income } from "../constants/billingTypes";
 const amountReducer = (accumulator, currentValue) => ({
   amount: accumulator.amount + currentValue.amount,
 });
+
+// Vue 3 Composition API
+// import { computed } from "vue";
+
 export default {
   components: {
     StatsColumn,
@@ -53,6 +57,7 @@ export default {
       type: Number,
     },
   },
+  // Use of Vue 2 Options API
   computed: {
     incomeSum() {
       return this.getReduced(income);
@@ -69,12 +74,29 @@ export default {
   },
   methods: {
     getReduced(type) {
-      console.log("called with:", type);
       const filtered = this.entries.filter((entry) => entry.type === type);
       const reduced = filtered.reduce(amountReducer);
       return reduced.amount;
     },
   },
+
+  // Use of Vue 3 Composition API
+  // setup(props) {
+  //   function getReduced(type) {
+  //     const filtered = props.entries.filter((entry) => entry.type === type);
+  //     const reduced = filtered.reduce(amountReducer);
+  //     return reduced.amount;
+  //   }
+
+  //   const incomeSum = computed(() => getReduced(income));
+  //   const expencesSum = computed(() => getReduced(expence));
+  //   const avaliableBudget = computed(() => incomeSum.value - expencesSum.value);
+  //   const shouldWarnExpences = computed(
+  //     () => incomeSum.value / 2 < expencesSum.value
+  //   );
+
+  //   return { incomeSum, expencesSum, avaliableBudget, shouldWarnExpences };
+  // },
 };
 </script>
 
